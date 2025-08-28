@@ -99,13 +99,6 @@ async def send_sms(
             "message": f"The 'To' phone number '{to_number}' is not a valid phone number.",
         }
 
-    if not is_valid_phone_number(from_number):
-        response.status_code = status.HTTP_400_BAD_REQUEST
-        return {
-            "status": "error",
-            "message": f"The 'From' phone number '{from_number}' is not a valid phone number.",
-        }
-
     # If all checks pass, return a success response (200 OK)
     print(f"Mock SMS sent to {to_number} from {from_number}: {body}")
     response.status_code = status.HTTP_200_OK
