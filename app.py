@@ -45,7 +45,7 @@ def is_valid_phone_number(phone_number: str) -> bool:
             },
         },
         429: {
-            "description": "Too Many Requests - Any number starting with 429 will trigger this error.",
+            "description": "Too Many Requests - Any number ending with 4291111111 will trigger this error.",
             "content": {
                 "application/json": {
                     "example": {
@@ -56,7 +56,7 @@ def is_valid_phone_number(phone_number: str) -> bool:
             },
         },
         500: {
-            "description": "Internal Server Error - Any number starting with 500 will trigger this error.",
+            "description": "Internal Server Error - Any number ending with 5001111111 will trigger this error.",
             "content": {
                 "application/json": {
                     "example": {
@@ -81,13 +81,13 @@ async def send_sms(
     cleaned_to_number = re.sub(r'\D', '', to_number)
 
     if enable_error_behavior:
-        # Return 429 Too Many Requests for any number starting with 429
-        if cleaned_to_number.startswith('429'):
+        # Return 429 Too Many Requests for any number ending with 4291111111
+        if cleaned_to_number.endswith('4291111111'):
             response.status_code = status.HTTP_429_TOO_MANY_REQUESTS
             return {"status": "error", "message": "Too many requests"}
 
-        # Return 500 Internal Server Error for any number starting with 500
-        if cleaned_to_number.startswith('500'):
+        # Return 500 Internal Server Error for any number ending with 5001111111
+        if cleaned_to_number.endswith('5001111111'):
             response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
             return {"status": "error", "message": "Internal Server Error"}
 
