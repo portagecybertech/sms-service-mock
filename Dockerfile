@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 4. Copy app code
-COPY app.py .
+COPY service_mock .
 
 # 5. Expose port (optional but good practice)
 EXPOSE 8000
